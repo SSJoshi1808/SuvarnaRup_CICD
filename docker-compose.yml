@@ -3,7 +3,7 @@ services:
     build: ./backend
     container_name: mern-backend
     ports:
-      - "9001:9000"   # changed host port to 9001
+      - "9001:9000"   
     env_file:
       - ./backend/.env
     restart: always
@@ -14,7 +14,7 @@ services:
     ports:
       - "3000:80"
     environment:
-      - VITE_BACKEND_URL=http://localhost:9001   # updated to new backend port
+      - VITE_BACKEND_URL=http://localhost:9001   
     volumes:
       - ./frontend/nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
