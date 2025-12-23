@@ -30,10 +30,8 @@ app.use(
       "http://localhost:5175",
       "http://localhost:3000",
       "https://ecommerce-project-five-tau.vercel.app", // <-- Add this line
-      "http://suvarnarup-ecommerce.imcc.com"
-      // "http://suvarnarup-prajakta.imcc.com",
-      // "http://suvarnarup-prajakta.imcc.com",
-       
+      "http://suvarnarup-ecommerce.imcc.com",
+      
     ],
     credentials: true,
   })
