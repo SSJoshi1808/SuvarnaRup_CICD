@@ -459,7 +459,7 @@ spec:
                           -Dsonar.projectKey=ecommerce_project \
                           -Dsonar.sources=backend,frontend \
                           -Dsonar.host.url=http://my-sonarqube-sonarqube.sonarqube.svc.cluster.local:9000 \
-                          -Dsonar.token=sqp_XXXX_REPLACE_TOKEN
+                          -Dsonar.token=sqp_6c8cff2d8f8ba5ac58c1fcd88215b42648d4c60d
                     '''
                 }
             }
