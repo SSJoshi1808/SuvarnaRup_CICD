@@ -493,29 +493,29 @@ spec:
 
         stage('Deploy to Kubernetes') {
     steps {
-    container('kubectl') {
-        sh '''
-            echo "======= Applying Deployment ======="
-            envsubst < k8s/deployment.yaml | kubectl apply -n ${NAMESPACE} -f -
+        container('kubectl') {
+            sh '''
+                echo "======= Applying Deployment ======="
+                envsubst < k8s/deployment.yaml | kubectl apply -n ${NAMESPACE} -f -
 
-            echo "======= Applying Service ======="
-            kubectl apply -n ${NAMESPACE} -f k8s/service.yaml
+                echo "======= Applying Service ======="
+                kubectl apply -n ${NAMESPACE} -f k8s/service.yaml
 
-             kubectl rollout restart deployment/ecommerce-backend -n 2401080
-             kubectl rollout restart deployment/ecommerce-frontend -n 2401080
-            echo "======= Waiting for Rollout ======="
-           
+                echo "======= Restarting Deployments ======="
+                kubectl rollout restart deployment/ecommerce-backend -n ${NAMESPACE}
+                kubectl rollout restart deployment/ecommerce-frontend -n ${NAMESPACE}
 
-            kubectl rollout status deployment/ecommerce-frontend -n ${NAMESPACE} --timeout=60s || echo "No new rollout for frontend"
-            kubectl rollout status deployment/ecommerce-backend -n ${NAMESPACE} --timeout=60s || echo "No new rollout for backend"
+                echo "======= Waiting for Rollout ======="
+                kubectl rollout status deployment/ecommerce-backend -n ${NAMESPACE} --timeout=180s || true
+                kubectl rollout status deployment/ecommerce-frontend -n ${NAMESPACE} --timeout=180s || true
 
-            echo "======= POD STATUS ======="
-            kubectl get pods -n ${NAMESPACE}
-        '''
+                echo "======= POD STATUS ======="
+                kubectl get pods -n ${NAMESPACE}
+            '''
+        }
     }
 }
 
-}
 
 stage('Debug Logs') {
     steps {
@@ -530,5 +530,6 @@ stage('Debug Logs') {
         }
     }
 }
+
     }
 }
