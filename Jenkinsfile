@@ -512,6 +512,9 @@ spec:
                         echo "======= Applying Service YAML ======="
                         kubectl apply -f k8s/service.yaml
 
+                        kubectl rollout restart deployment/ecommerce-backend -n 2401080
+                        kubectl rollout restart deployment/ecommerce-frontend -n 2401080
+
                         echo "======= Checking Rollout ======="
                         kubectl rollout status deployment/ecommerce-frontend -n 2401080 --timeout=60s || true
                         kubectl rollout status deployment/ecommerce-backend -n 2401080 --timeout=60s || true
