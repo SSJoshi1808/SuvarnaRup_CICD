@@ -492,24 +492,24 @@ spec:
         }
 
         stage('Deploy to Kubernetes') {
-            steps {
-                container('kubectl') {
-                    sh '''
-                        echo "======= Applying Deployment ======="
-                        kubectl apply -n ${NAMESPACE} -f k8s/deployment.yaml
+    steps {
+        container('kubectl') {
+            sh '''
+                echo "======= Applying Deployment ======="
+                envsubst < k8s/deployment.yaml | kubectl apply -n ${NAMESPACE} -f -
 
-                        echo "======= Applying Service ======="
-                        kubectl apply -n ${NAMESPACE} -f k8s/service.yaml
+                echo "======= Applying Service ======="
+                kubectl apply -n ${NAMESPACE} -f k8s/service.yaml
 
-                        echo "======= Waiting for Rollout ======="
-                        kubectl rollout status deployment/ecommerce-frontend -n ${NAMESPACE} --timeout=180s
-                        kubectl rollout status deployment/ecommerce-backend -n ${NAMESPACE} --timeout=180s
+                echo "======= Waiting for Rollout ======="
+                kubectl rollout status deployment/ecommerce-frontend -n ${NAMESPACE} --timeout=180s
+                kubectl rollout status deployment/ecommerce-backend -n ${NAMESPACE} --timeout=180s
 
-                        echo "======= POD STATUS ======="
-                        kubectl get pods -n ${NAMESPACE}
-                    '''
-                }
-            }
+                echo "======= POD STATUS ======="
+                kubectl get pods -n ${NAMESPACE}
+            '''
         }
+    }
+}
     }
 }
