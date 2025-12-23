@@ -502,8 +502,8 @@ spec:
             kubectl apply -n ${NAMESPACE} -f k8s/service.yaml
 
             echo "======= Waiting for Rollout ======="
-            kubectl rollout status deployment/ecommerce-frontend -n ${NAMESPACE} --timeout=180s || echo "No new rollout for frontend"
-            kubectl rollout status deployment/ecommerce-backend -n ${NAMESPACE} --timeout=180s || echo "No new rollout for backend"
+            kubectl rollout status deployment/ecommerce-frontend -n ${NAMESPACE} --timeout=60s || echo "No new rollout for frontend"
+            kubectl rollout status deployment/ecommerce-backend -n ${NAMESPACE} --timeout=60 || echo "No new rollout for backend"
 
             echo "======= POD STATUS ======="
             kubectl get pods -n ${NAMESPACE}
@@ -511,6 +511,17 @@ spec:
     }
 }
 
+}
+
+stage('Debug Logs') {
+  steps {
+    container('kubectl') {
+      sh '''
+        kubectl logs ecommerce-backend-64b454864b-krchq -n 2401080 || true
+        kubectl logs ecommerce-frontend-55996ff678-p8s27 -n 2401080 || true
+      '''
+    }
+  }
 }
     }
 }
