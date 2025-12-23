@@ -1,0 +1,6 @@
+projectKey=Ecommerce-Project2401077
+serverUrl=http://sonarqube.imcc.com
+serverVersion=25.1.0.102122
+dashboardUrl=http://sonarqube.imcc.com/dashboard?id=Ecommerce-Project2401077
+ceTaskId=6fffe983-8ece-43a5-a9db-20047c21b2f3
+ceTaskUrl=http://sonarqube.imcc.com/api/ce/task?id=6fffe983-8ece-43a5-a9db-20047c21b2f3

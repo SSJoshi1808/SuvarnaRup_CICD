@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply antialiased text-gray-800;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Responsive typography */
+h1 {
+  @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+}
+
+h2 {
+  @apply text-2xl sm:text-3xl md:text-4xl;
+}
+
+h3 {
+  @apply text-xl sm:text-2xl md:text-3xl;
+}
+
+/* Touch-friendly elements */
+button,
+a {
+  @apply cursor-pointer;
+}
+
+/* Prevent text overflow */
+p {
+  @apply break-words;
+}
+
+/* Smooth transitions */
+.smooth-transition {
+  transition-property: all;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
+}
+
+/* Responsive images */
+img {
+  @apply max-w-full h-auto;
+}
+
+/* Better form elements */
+input,
+textarea,
+select {
+  @apply w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-gray-200;
+}
+
+/* Better table responsiveness */
+table {
+  @apply w-full;
+}
+
+/* Better mobile navigation */
+@media (max-width: 768px) {
+  .mobile-menu-open {
+    @apply overflow-hidden;
+  }
+}
+
+/* Better scrolling */
+.overflow-y-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+#root {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
