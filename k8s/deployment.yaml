@@ -575,7 +575,7 @@ spec:
     spec:
       containers:
         - name: ecommerce-frontend
-          image: 127.0.0.1:30085/shreya_joshi_repo/ecommerce-frontend:${BUILD_NUMBER}
+          image: 127.0.0.1:30085/shreya_joshi_repo/ecommerce-frontend:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -603,7 +603,7 @@ spec:
     spec:
       containers:
         - name: ecommerce-backend
-          image: 127.0.0.1:30085/shreya_joshi_repo/ecommerce-backend:${BUILD_NUMBER}
+          image: 127.0.0.1:30085/shreya_joshi_repo/ecommerce-backend:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 9000
